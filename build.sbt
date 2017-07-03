@@ -6,7 +6,7 @@ name := "play-silhouette-reactivemongo-seed"
 
 version := "4.0.0"
 
-scalaVersion := "2.11.8"
+scalaVersion := "2.11.11"
 
 resolvers += Resolver.jcenterRepo
 
@@ -45,5 +45,3 @@ ScalariformKeys.preferences := ScalariformKeys.preferences.value
   .setPreference(FormatXml, false)
   .setPreference(DoubleIndentClassDeclaration, false)
   .setPreference(PreserveDanglingCloseParenthesis, true)
-
-fork in run := true
