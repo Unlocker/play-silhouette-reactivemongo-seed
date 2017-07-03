@@ -24,8 +24,7 @@ class ApplicationControllerSpec extends PlaySpecification with Mockito {
     "redirect to login page if user is unauthorized" in new Context {
       new WithApplication(application) {
         val Some(redirectResult) = route(FakeRequest(routes.ApplicationController.index())
-          .withAuthenticator[CookieAuthenticator](LoginInfo("invalid", "invalid"))
-        )
+          .withAuthenticator[CookieAuthenticator](LoginInfo("invalid", "invalid")))
 
         status(redirectResult) must be equalTo SEE_OTHER
 
@@ -43,8 +42,7 @@ class ApplicationControllerSpec extends PlaySpecification with Mockito {
     "return 200 if user is authorized" in new Context {
       new WithApplication(application) {
         val Some(result) = route(FakeRequest(routes.ApplicationController.index())
-          .withAuthenticator[CookieAuthenticator](identity.loginInfo)
-        )
+          .withAuthenticator[CookieAuthenticator](identity.loginInfo))
 
         status(result) must beEqualTo(OK)
       }
@@ -68,15 +66,7 @@ class ApplicationControllerSpec extends PlaySpecification with Mockito {
     /**
      * An identity.
      */
-    val identity = User(
-      userID = UUID.randomUUID(),
-      loginInfo = LoginInfo("facebook", "user@facebook.com"),
-      firstName = None,
-      lastName = None,
-      fullName = None,
-      email = None,
-      avatarURL = None
-    )
+    val identity = User(userID = UUID.randomUUID(), loginInfo = LoginInfo("facebook", "user@facebook.com"), firstName = None, lastName = None, fullName = None, email = None, avatarURL = None, blocked = false, adminRoles = Set.empty[String], firmRoles = Seq.empty)
 
     /**
      * A Silhouette fake environment.

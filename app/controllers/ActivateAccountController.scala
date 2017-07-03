@@ -75,7 +75,7 @@ class ActivateAccountController @Inject() (
     authTokenService.validate(token).flatMap {
       case Some(authToken) => userService.retrieve(authToken.userID).flatMap {
         case Some(user) if user.loginInfo.providerID == CredentialsProvider.ID =>
-          userService.save(user.copy(activated = true)).map { _ =>
+          userService.save(user.copy(activated = true, blocked = false, adminRoles = Set.empty[String], firmRoles = Seq.empty)).map { _ =>
             Redirect(routes.SignInController.view()).flashing("success" -> Messages("account.activated"))
           }
         case _ => Future.successful(Redirect(routes.SignInController.view()).flashing("error" -> Messages("invalid.activation.link")))
