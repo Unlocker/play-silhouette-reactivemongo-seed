@@ -29,17 +29,18 @@ class FirmDAOImpl @Inject() (val reactiveMongoApi: ReactiveMongoApi) extends Fir
   }
 
   /**
-   * @return collection to deal with
-   */
-  def collection: Future[JSONCollection] = reactiveMongoApi.database.map(_.collection("firms"))
-
-  /**
    * Saves a given firm
    *
    * @param firm firm
    * @return saved firm
    */
   override def save(firm: Firm): Future[Firm] = {
-
+    collection.flatMap(_.update(Json.obj("firmID" -> firm.firmID), firm, upsert = true))
+    Future.successful(firm)
   }
+
+  /**
+   * @return collection to deal with
+   */
+  def collection: Future[JSONCollection] = reactiveMongoApi.database.map(_.collection("firms"))
 }
