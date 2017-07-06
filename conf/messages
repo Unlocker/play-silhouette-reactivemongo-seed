@@ -19,6 +19,7 @@ sign.up.account = Sign up for a new account
 sign.in.credentials = Sign in with your credentials
 
 error = Error!
+error.profileError = Profile Error!
 info = Info!
 success = Success!
 home = Home
