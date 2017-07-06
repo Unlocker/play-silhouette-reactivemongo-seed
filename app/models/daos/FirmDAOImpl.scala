@@ -4,10 +4,12 @@ import java.util.UUID
 import javax.inject.Inject
 
 import models.Firm
-import play.api.libs.json.Json
-import play.modules.reactivemongo.ReactiveMongoApi
+import play.api.libs.json._
+import play.modules.reactivemongo._
+import play.modules.reactivemongo.json._
 import reactivemongo.play.json.collection.JSONCollection
 
+import scala.concurrent.ExecutionContext.Implicits.global
 import scala.concurrent.Future
 
 /**

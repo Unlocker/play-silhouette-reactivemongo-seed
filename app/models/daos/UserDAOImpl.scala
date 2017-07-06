@@ -2,17 +2,16 @@ package models.daos
 
 import java.util.UUID
 import javax.inject._
+
 import com.mohiva.play.silhouette.api.LoginInfo
 import models.User
-import scala.concurrent.ExecutionContext.Implicits.global
 import play.api.libs.json._
+import play.modules.reactivemongo._
+import play.modules.reactivemongo.json._
+import reactivemongo.play.json.collection.JSONCollection
+
 import scala.concurrent.ExecutionContext.Implicits.global
 import scala.concurrent.Future
-
-import reactivemongo.api._
-import play.modules.reactivemongo.json._
-import play.modules.reactivemongo._
-import reactivemongo.play.json.collection.JSONCollection
 
 /**
  * Give access to the user object.
